@@ -1,0 +1,38 @@
+{%extends 'base.html' %} {%block content%} {%load static%}
+
+
+
+<!-------Sign Up Form--------->
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <!--<img src="#" id="icon" alt="User Icon" />-->
+            <div id="icon" style="padding: 10px;width: auto; font-size: 32px;">Sign up</div>
+            {% if error%}
+            <div class="text"><span class="theme_color">{{error}}</span> </div>
+            {%endif%}
+        </div>
+
+        <!-- Login Form -->
+        <form method="POST">
+            {%csrf_token%}
+            <input type="text" id="login" class="fadeIn second" name="firstname" placeholder="Your Name">
+            <input type="text" id="login" class="fadeIn second" name="username" placeholder="Username">
+            <input type="text" id="login" class="fadeIn second" name="email" placeholder="Enter Your Email">
+            <input type="text" id="password" class="fadeIn third" name="password1" placeholder="password">
+            <input type="text" id="password" class="fadeIn third" name="password2" placeholder="repate-password">
+            <input type="submit" class="fadeIn fourth" value="Sign Up">
+        </form>
+
+
+
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>{% endblock %}

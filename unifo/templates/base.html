@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {%load static%}
+    <title>University Info</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'style/main.css' %}">
+    <link rel="stylesheet" href="{% static 'style/login.css' %}">
+    <link rel="stylesheet" href="{% static 'style/contact_us.css' %}">
+    <!-- JS, Popper.js, and jQuery -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+</head>
+
+<body>
+    <section id="nav-bar">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{%url 'home'%}">LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{%url 'home'%}">Home </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Bangladesh University
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #5f1782;">
+                            <a class="dropdown-item" href="{% url 'university'%}">Public University</a>
+                            <a class="dropdown-item" href="{% url 'university'%}">Private University</a>
+                            <a class="dropdown-item" href="{% url 'university'%}">Engineering University</a>
+                            <a class="dropdown-item" href="{% url 'university'%}">Medical University</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'university'%}">Foreign University</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact'%}">Contact Us</a>
+                    </li>
+                    <li class="nav-item d-flex">
+
+                        <a class="nav-link" href="{% url 'signin'%}">Login</a>
+                        <a class="nav-link" href="#">/</a>
+                        <a class="nav-link" href="{% url 'signup'%}">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+
+
+    {% block content%} {% endblock %}
+    <!-- Footer section-->
+    <div class="footer">
+        <p> All Copyright Reserved.</p>
+    </div>
+</body>
+
+</html>
