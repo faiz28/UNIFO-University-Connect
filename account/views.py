@@ -10,14 +10,14 @@ def registration(request):
         if request.POST['password1']==request.POST['password2']:
             try:
                 user=User.objects.get(username=request.POST['username'])
-                return render(request,'accounts/signup.html',{'error':'Username already exit'})
+                return render(request,'signup.html',{'error':'Username already exit'})
             except User.DoesNotExist:
                 user=User.objects.create_user(request.POST['username'], request.POST['password1'], first_name=request.POST['firstname'])
                 user.save()
                 auth.login(request,user)
                 return redirect('home')
         else:
-            return render(request,'accounts/signup.html',{'error':'Password Does not match'})
+            return render(request,'signup.html',{'error':'Password Does not match'})
     else:
         return render(request,'signup.html')
 
@@ -28,7 +28,7 @@ def signin(request):
             auth.login(request,user)
             return redirect('home')
         else:
-            return render(request,'accounts/signin.html',{'error':'username or password is incorrect.'})
+            return render(request,'login.html',{'error':'username or password is incorrect.'})
     else:       
         return render(request,'login.html')
 

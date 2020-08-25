@@ -1,0 +1,27 @@
+.university_name {
+    background: #5f1782;
+    color: whitesmoke;
+    font-family: -webkit-body;
+    font-size: 24px;
+}
+
+.country {
+    background: #a517ba;
+    color: whitesmoke;
+    font-family: -webkit-body;
+    font-size: 14px;
+}
+
+p {
+    color: black;
+}
+
+.btn {
+    padding-top: 4px;
+    position: relative;
+    font-size: 22px;
+    font-family: -webkit-body;
+    border-radius: 20px;
+    color: aliceblue;
+    background-image: linear-gradient(to right, #a517ba, #5f1782);
+}
