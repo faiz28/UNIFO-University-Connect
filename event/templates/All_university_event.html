@@ -1,0 +1,64 @@
+{%extends 'base.html' %} {%block content%} {%load static%}
+
+<br>
+<div class="container">
+    <div class="main-body">
+
+
+        <div>
+            <div class="row gutters-sm">
+                <div class="col-md-12 mb-3">
+
+                    <div class="card card-control">
+                        <div class="card-body">
+                            <div style="text-align: center;">
+                                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0" style="color: #2c3e50 !important; " ;>Department</h2>
+                            </div>
+
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fa fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+
+                            <div class="card-deck">
+                                {%for data in event_list.all%}
+                                <div class="col-md-4 department">
+                                    <div class="card mb-4 box-shadow card-round">
+                                        <a href="{% url 'event_view' data.id %}">
+                                            <img class="card-img-top" src="{{data.img.url}}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                                            <div class="card-body" style="background-color: #e9e9e9;">
+                                                <div class="university_name d-flex justify-content-center  rounded-top">
+                                                    <p>{{data.title}}</p>
+                                                </div>
+                                                <div class="university_name d-flex  rounded-top">
+                                                    <p>Start Time : {{data.date_start}}</p>
+                                                </div>
+
+                                            </div>
+                                        </a>
+                                        <div style="color: gray; text-align:center;">
+                                            <h5>{{data.uni_name}}</h5>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                {%endfor%}
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{%endblock%}

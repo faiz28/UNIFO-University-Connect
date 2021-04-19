@@ -1,0 +1,143 @@
+{%extends 'base.html' %} {%block content%} {%load static%}
+
+<div class="container">
+    <div class="main-body">
+
+
+        <!-- /Breadcrumb -->
+
+        <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            {% for data in userinfo.all|slice:":1"%}
+                                {%if data.profile_pic%}
+                                <img class="profile_pic" src="{{data.profile_pic.url}}" alt="Admin" class="rounded-circle" width="150">
+                                {%else%} <img src="{% static 'image/avatar7.png'%}" alt="Admin" class="rounded-circle" width="150">
+                                {%endif%}
+
+                            {%endfor%}
+                           
+                            <div class="mt-3">
+                                {% for data in userinfo.all|slice:":1"%}
+                                <h4>{{data.fullname}}</h4>
+                                {%endfor%}
+                                <p class="text-secondary mb-1">{% for data in userinfo.all|slice:":1"%} {{data.work}} {%endfor%}</p>
+                                <p class="text-muted font-size-sm">{% for data in userinfo.all|slice:":1"%} {{data.address}} {%endfor%}</p>
+                                <a href="{% url 'user_update' %}">
+                                    <button class="btn btn-primary">Update Profile</button>
+                                </a>
+                                
+                                
+
+                                <!-- <button class="btn btn-outline-primary">Message</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6> Student ID : </h6>
+                            <span class="text-secondary">{% for data in stu_data.all|slice:":1"%} {{data.student_id}} {%endfor%}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6>University Name: </h6>
+                            <span class="text-secondary">{% for data in stu_data.all|slice:":1"%} {{data.uni_name}} {%endfor%}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6>Department Name: </h6>
+                            <span class="text-secondary">{% for data in stu_data.all|slice:":1"%} {{data.department_name}} {%endfor%}</span>
+                        </li>
+                        <!-- <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram mr-2 icon-inline text-danger"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>Instagram</h6>
+                            <span class="text-secondary">{% for data in socialinfo.all|slice:":1"%} {{data.instagram}} {%endfor%}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook mr-2 icon-inline text-primary"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>Facebook</h6>
+                            <span class="text-secondary">{% for data in socialinfo.all%} {{data.facebook}} {%endfor%}</span>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row d-flex">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Full Name :</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {% for data in userinfo.all|slice:":1"%} {{data.fullname}} {%endfor%}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Email :</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {% for data in info.all|slice:":1"%} {{data.email}} {%endfor%}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Username :</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ user.get_username }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Mobile Number :</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {% for data in userinfo.all|slice:":1"%} {{data.mobile_num}} {%endfor%}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Address :</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {% for data in userinfo.all|slice:":1"%} {{data.address}} {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gutters-sm">
+                    <div class="col-sm-12 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3>Which information are you added?</h3>
+                                <hr> {%for data in user_added.all%}
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <img src="{% static 'image/avatar7.png'%}" alt="" style="width: 50px;">
+                                    </div>
+                                    <div class="col-sm-9 ">
+                                        <h4>{{data.title}}</h4>
+                                        <p class="text-secondary">{{data.description | safe}}</p>
+                                    </div>
+                                </div>
+                                <hr> {%endfor%} {%if user_added.count == 0 %}
+                                <p>No Information Added</p>
+                                {%endif%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}

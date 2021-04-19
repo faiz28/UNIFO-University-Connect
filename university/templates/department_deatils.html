@@ -1,0 +1,251 @@
+{%extends 'base.html' %} {%block content%} {%load static%}
+<div class="container">
+    <div class="main-body">
+
+
+        <!-- /Breadcrumb -->
+        <div>
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card card-control">
+                        <div class="card-body">
+                            {%for data in depart_details.all%}
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="{{data.department_name.img.url}}" alt="Admin" width="100%">
+                                <div class="mt-3">
+
+                                    <h4>{{data.department_name.sub_name}}</h4>
+
+                                    <hr>
+                                    <p>{{data.uni_name.university_name}}</p>
+
+                                    {{ data.department_id }}
+                                    <br> {%endfor%} {%for data in stu_data.all|slice:':1'%} {% if not data.department_id %}
+                                    <div style="text-align: center;">
+                                        <a href="{% url 'department_registration' dep_id %}">
+                                            <button type="button" class="btn btn-info">Register Your Department</button>
+                                        </a>
+                                    </div>
+                                    {%endif%} {%endfor%}
+                                    <!-- <p class="text-secondary mb-1">Total Student 4500+</p> -->
+                                    {%if check_user_auth == -1%}
+
+                                    <div style="text-align: center;">
+                                        <a href="{% url 'signin'  %}">
+                                            <button type="button" class="btn btn-info">Register Your Department</button>
+                                        </a>
+                                    </div>{%endif%}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card mb-3 card-control">
+                        <div class="card-body">
+                            <div class="row">
+                                <h5>Established Year : {%for data in depart_details.all%} {{data.established_year}} {%endfor%}
+                                </h5>
+                            </div>
+
+                            <hr>
+                            <div class="row">
+                                <h3>About Department :</h3>
+                            </div>
+                            <div class="row">
+                                {%for data in depart_details.all%}
+                                <p>{{data.description}}</p>
+                                {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row w-100 d-flex justify-content-center">
+        {%for data in depart_details.all%}
+        <div class="col-md-3 ">
+            <div class="card border-success mx-sm-1 p-3">
+                <img class="card-img-top" src="{% static 'image/achievement.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                <!-- <div class="card border-success shadow text-success p-3 my-card"><span class="fa fa-eye" aria-hidden="true"></span></div> -->
+                <div class="text-success text-center mt-3">
+                    <h4>Total Achievement</h4>
+                </div>
+
+                <div class="text-success text-center mt-2">
+                    <h1>{{achiev_list.count}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 ">
+            <div class="card border-success mx-sm-1 p-3">
+                <img class="card-img-top" src="{% static 'image/teacher.png'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                <!-- <div class="card border-success shadow text-success p-3 my-card"><span class="fa fa-eye" aria-hidden="true"></span></div> -->
+                <div class="text-success text-center mt-3">
+                    <h4>Total Teacher</h4>
+                </div>
+                <div class="text-success text-center mt-2">
+                    <h1>{{data.total_teacher}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-danger mx-sm-1 p-3">
+                <img class="card-img-top" src="{% static 'image/student.png'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                <div class="text-danger text-center mt-3">
+                    <h4>Total Student</h4>
+                </div>
+                <div class="text-danger text-center mt-2">
+                    <h1>{{data.total_student}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-warning mx-sm-1 p-3">
+                <a href="{% url 'university_event' dep_id %}">
+                    <img class="card-img-top" src="{% static 'image/event.png'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                    <div class="text-warning text-center mt-3">
+                        <h4>Event</h4>
+                    </div>
+                    <div class="text-warning text-center mt-2">
+                        <br>
+                        <br>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="main-body">
+
+
+        <!-- /Breadcrumb -->
+        <div>
+            <div class="row gutters-sm">
+                <div class="col-md-12 mb-3">
+
+                    <div class="card card-control">
+                        <div class="card-body">
+
+                            <div style="text-align: center;">
+                                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0" style="color: #2c3e50 !important;">achievement </h2>
+                            </div>
+
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fa fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+
+                            <div class="card-deck ">
+                                {%for data in stu_data.all|slice:':1'%} {% if data.department_id == dep_id %}
+                                <div class="col-md-4 department" style="    text-align: center;">
+                                    <!-- Card -->
+                                    <a href="{% url 'add_achievment' dep_id %}">
+                                        <div class="card promoting-card">
+
+
+
+                                            <!-- Card image -->
+                                            <div class="view overlay">
+                                                <img class=" img-fluid" src="{% static 'image/achievement.jpg'%}" alt="Card image cap">
+                                                <a href="#!">
+                                                    <div class="mask rgba-white-slight" style="text-align: center;">
+                                                        <h3>Add Achievement</h3>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+
+
+                                        </div>
+                                        <!-- Card -->
+                                    </a>
+
+
+                                </div>
+                                {%endif%} {%endfor%} {%for acv in achiev_list.all%}
+                                <div class="col-md-4 department">
+                                    <!-- Card -->
+                                    <a href="{% url 'achiv_details' acv.id %}">
+                                        <div class="card promoting-card">
+
+                                            <!-- Card content -->
+                                            <div class="  card-body d-flex flex-row">
+
+                                                <!-- Avatar -->
+                                                <img src="{%static 'image/avatar7.png'%}" class="rounded-circle mr-3" height="50px" width="50px" alt="avatar">
+
+                                                <!-- Content -->
+                                                <div>
+
+                                                    <!-- Title -->
+                                                    <h4 class="card-title font-weight-bold mb-2">{{acv.username}}</h4>
+
+                                                </div>
+
+                                            </div>
+
+                                            <!-- Card image -->
+                                            <div class="view overlay">
+                                                <img class="img-fluid img-thumbnail" style="width: 422px; height: 262px;" src="{{acv.img.url}}" alt="Card image cap">
+                                                <a href="#!">
+                                                    <div class="mask rgba-white-slight"></div>
+                                                </a>
+                                            </div>
+
+                                            <!-- Card content -->
+                                            <div class="card-body">
+
+                                                <div class="">
+                                                    <h3>
+                                                        {{acv.title}}
+                                                    </h3>
+                                                    <!-- Text -->
+                                                    <div class="description">
+                                                        {{acv.description | safe}}
+
+                                                    </div>
+                                                    <!-- Button -->
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <!-- Card -->
+                                    </a>
+
+
+                                </div>
+                                {%endfor%}
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{%endblock%}

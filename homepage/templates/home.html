@@ -7,360 +7,207 @@
         <div class="row">
             <div class="col-md-6">
                 <p class="promo-title">CHOOSING YOUR UNIVERSITY</p>
-                <p>Here you get all of univeristy infromation you can choosing one.easily communicate University.</p>
+                <p>Here you get all univeristy infromation you can choosing one and you can easily connected other University.</p>
             </div>
             <div class="col-md-6">
                 <img src="{% static 'image/banner.png'%}" alt="" class="img-fluid">
             </div>
         </div>
-        <div class="topnav">
+        <!-- <div class="topnav">
             <div class="search-container">
                 <form action="#">
                     <input type="text" placeholder="Search.." name="search" style="width: 80%; height: 50px">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
 
-<!-- University section-->
-<section id="public_university">
-    <div class="container_2">
-        <div class="row">
-            <div class="university_catagory">
-                <p>Public University</p>
-                <button type="button" class="btn btn-primary">Show more</button>
-            </div>
+
+<section class="page-section portfolio" id="portfolio">
+    <div class="container university">
+        <div class="main-title text-center">
+            <h4 class="page-section-heading text-center text-uppercase text-secondary mb-0" style="color: #2c3e50 !important; font-size:27px;">Your Department</h4>
         </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{% static 'image/du.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body" style="background-color: #e9e9e9;">
-                        <div class="university_name d-flex justify-content-center align-items-center rounded-top">
-                            Dhaka University
-                        </div>
-                        <div class="country d-flex justify-content-center align-items-center rounded-bottom">
-                            Bangladesh
-                        </div>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn">Details</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{% static 'image/du.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body" style="background-color: #e9e9e9;">
-                        <div class="university_name d-flex justify-content-center align-items-center rounded-top">
-                            Dhaka University
-                        </div>
-                        <div class="country d-flex justify-content-center align-items-center rounded-bottom">
-                            Bangladesh
-                        </div>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn">Details</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{% static 'image/du.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body" style="background-color: #e9e9e9;">
-                        <div class="university_name d-flex justify-content-center align-items-center rounded-top">
-                            Dhaka University
-                        </div>
-                        <div class="country d-flex justify-content-center align-items-center rounded-bottom">
-                            Bangladesh
-                        </div>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn">Details</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fa fa-star"></i></div>
+            <div class="divider-custom-line"></div>
         </div>
+        <hr>
+
+        <div class="row d-flex">
+            {%for data in dep_info.all%}
+            <div class="col-md-6 col-lg-4 mb-5">
+
+                <div class="portfolio-item mx-auto category" data-toggle="modal" data-target="#portfolioModal3">
+                    <a href="{% url  'department_descrip' data.id%} ">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid img-thumbnail img-hei" src="{{data.department_name.img.url}}" alt="" />
+                    </a>
+                    <div style="text-align: center;     border: 1px solid darkgray;">
+                        <h3 style="color:#ecb200;">{{data.department_name.sub_name }}</h3>
+                        <p style="color: gray;">{{data.uni_name.university_name}}</p>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+            <div class="col-md-8 col-lg-8 mb-5">
+                {%for data in dep_info.all%}
+                <div style="text-align: center;">
+
+                    <h3>All Event {{data.department_name.sub_name}}</h3>
+
+                </div>
+                <hr style="border: 2px solid #ecb200;"> {%endfor%}
+                <div class="scrollable">
+
+
+
+                    {%for data in all_event|slice:":3 "%}
+                    <a href="{%url 'event_view' data.id %}">
+                        <h4 style="color: #ecb200; "> {{data.title}}</h4>
+
+                    </a>
+                    <p style="color: gray; ">
+                        {{data.uni_name}}
+                    </p>
+                    <hr> {%endfor%} {%for data in all_event|slice:":1 "%}
+                    <div style="text-align: center; ">
+                        <a href="{% url 'All_event' data.department_id %} ">
+                            <button class="btn btn-secondary " style="background-color: #ecb200; ">Show More</button>
+                        </a>
+
+                    </div>
+                    {%endfor%}
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+        {%if check_user_auth == -1%}
+        <div style="text-align: center; ">
+            <button class="btn btn-warning "> Register Your Department</button>
+        </div>
+        {%endif%}
+
+
     </div>
-</section>
-<!--Private University-->
-<section id="private_university">
-    <div class="container_2">
-        <div class="row">
-            <div class="university_catagory">
-                <p>Private University</p>
-                <button type="button" class="btn btn-primary">Show more</button>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{% static 'image/du.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body" style="background-color: #e9e9e9;">
-                        <div class="university_name d-flex justify-content-center align-items-center rounded-top">
-                            Dhaka University
-                        </div>
-                        <div class="country d-flex justify-content-center align-items-center rounded-bottom">
-                            Bangladesh
-                        </div>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn">Details</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{% static 'image/du.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body" style="background-color: #e9e9e9;">
-                        <div class="university_name d-flex justify-content-center align-items-center rounded-top">
-                            Dhaka University
-                        </div>
-                        <div class="country d-flex justify-content-center align-items-center rounded-bottom">
-                            Bangladesh
-                        </div>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn">Details</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{% static 'image/du.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body" style="background-color: #e9e9e9;">
-                        <div class="university_name d-flex justify-content-center align-items-center rounded-top">
-                            Dhaka University
-                        </div>
-                        <div class="country d-flex justify-content-center align-items-center rounded-bottom">
-                            Bangladesh
-                        </div>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn">Details</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
-<!--Engineering_university-->
-<section id="Engineering_university">
-    <div class="container_2">
-        <div class="row">
-            <div class="university_catagory">
-                <p>Engineering University</p>
-                <button type="button" class="btn btn-primary">Show more</button>
-            </div>
+<section class="page-section portfolio " id="portfolio ">
+    <div class="container university ">
+        <div class="main-title text-center ">
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0 " style="color: #2c3e50 !important; ">University</h2>
         </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{% static 'image/du.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body" style="background-color: #e9e9e9;">
-                        <div class="university_name d-flex justify-content-center align-items-center rounded-top">
-                            Dhaka University
-                        </div>
-                        <div class="country d-flex justify-content-center align-items-center rounded-bottom">
-                            Bangladesh
-                        </div>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn">Details</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{% static 'image/du.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body" style="background-color: #e9e9e9;">
-                        <div class="university_name d-flex justify-content-center align-items-center rounded-top">
-                            Dhaka University
-                        </div>
-                        <div class="country d-flex justify-content-center align-items-center rounded-bottom">
-                            Bangladesh
-                        </div>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn">Details</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{% static 'image/du.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body" style="background-color: #e9e9e9;">
-                        <div class="university_name d-flex justify-content-center align-items-center rounded-top">
-                            Dhaka University
-                        </div>
-                        <div class="country d-flex justify-content-center align-items-center rounded-bottom">
-                            Bangladesh
-                        </div>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn">Details</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+        <!-- Icon Divider-->
+        <div class="divider-custom ">
+            <div class="divider-custom-line "></div>
+            <div class="divider-custom-icon "><i class="fa fa-star "></i></div>
+            <div class="divider-custom-line "></div>
         </div>
-    </div>
-</section>
+        <div class="row justify-content-center ">
 
-<!--Medical_university-->
-<section id="Medical_university">
-    <div class="container_2">
-        <div class="row">
-            <div class="university_catagory">
-                <p>Medical University</p>
-                <button type="button" class="btn btn-primary">Show more</button>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{% static 'image/du.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body" style="background-color: #e9e9e9;">
-                        <div class="university_name d-flex justify-content-center align-items-center rounded-top">
-                            Dhaka University
+            <div class="col-md-6 col-lg-4 mb-5 ">
+                <div class="portfolio-item mx-auto category " data-toggle="modal " data-target="#portfolioModal3 ">
+                    <a href="{% url 'publicuniversitylist'%} ">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 ">
+                            <div class="portfolio-item-caption-content text-center text-white "><i class="fas fa-plus fa-3x "></i></div>
                         </div>
-                        <div class="country d-flex justify-content-center align-items-center rounded-bottom">
-                            Bangladesh
-                        </div>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn">Details</button>
-                        </div>
-
+                        <img class="img-fluid img-thumbnail img-hei " src="{% static 'image/cabin.png'%} " alt=" " />
+                    </a>
+                    <div style="text-align: center; border: 1px solid darkgray; ">
+                        <h3>Public University</h3>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{% static 'image/du.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body" style="background-color: #e9e9e9;">
-                        <div class="university_name d-flex justify-content-center align-items-center rounded-top">
-                            Dhaka University
+            <div class="col-md-6 col-lg-4 mb-5 ">
+                <div class="portfolio-item mx-auto category " data-toggle="modal " data-target="#portfolioModal3 ">
+                    <a href="{% url 'engineeruniversitylist' %} ">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 ">
+                            <div class="portfolio-item-caption-content text-center text-white "><i class="fas fa-plus fa-3x "></i></div>
                         </div>
-                        <div class="country d-flex justify-content-center align-items-center rounded-bottom">
-                            Bangladesh
-                        </div>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn">Details</button>
-                        </div>
-
+                        <img class="img-fluid img-thumbnail img-hei " src="{% static 'image/engi.jpg' %} " alt=" " />
+                    </a>
+                    <div style="text-align: center; border: 1px solid darkgray; ">
+                        <h3>Enginnering University</h3>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{% static 'image/du.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body" style="background-color: #e9e9e9;">
-                        <div class="university_name d-flex justify-content-center align-items-center rounded-top">
-                            Dhaka University
-                        </div>
-                        <div class="country d-flex justify-content-center align-items-center rounded-bottom">
-                            Bangladesh
-                        </div>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn">Details</button>
-                        </div>
 
+            <div class="col-md-6 col-lg-4 mb-5 ">
+                <div class="portfolio-item mx-auto category " data-toggle="modal " data-target="#portfolioModal3 ">
+                    <a href="{% url 'medicaluniversitylist' %} ">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 ">
+                            <div class="portfolio-item-caption-content text-center text-white "><i class="fas fa-plus fa-3x "></i></div>
+                        </div>
+                        <img class="img-fluid img-thumbnail img-hei " src="{% static 'image/HEAD-Top_9_Medical_Apps_for_Doctors_Hero_no_text.png' %} " alt=" " />
+                    </a>
+                    <div style="text-align: center; border: 1px solid darkgray; ">
+                        <h3>Medical University</h3>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
 
-<!--Foreign_university-->
-<section id="Foreign_university">
-    <div class="container_2">
-        <div class="row">
-            <div class="university_catagory">
-                <p>Foreign University</p>
-                <button type="button" class="btn btn-primary">Show more</button>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{% static 'image/du.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body" style="background-color: #e9e9e9;">
-                        <div class="university_name d-flex justify-content-center align-items-center rounded-top">
-                            Dhaka University
+            <div class="col-md-6 col-lg-4 mb-5 ">
+                <div class="portfolio-item mx-auto category " data-toggle="modal " data-target="#portfolioModal3 ">
+                    <a href="{% url 'stuuniversitylist' %} ">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 ">
+                            <div class="portfolio-item-caption-content text-center text-white "><i class="fas fa-plus fa-3x "></i></div>
                         </div>
-                        <div class="country d-flex justify-content-center align-items-center rounded-bottom">
-                            Bangladesh
-                        </div>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn">Details</button>
-                        </div>
-
+                        <img class="img-fluid img-thumbnail img-hei " src="{% static 'image/stu.jpg' %} " alt=" " />
+                    </a>
+                    <div style="text-align: center; border: 1px solid darkgray; ">
+                        <h3>Science and Technology University</h3>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{% static 'image/du.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body" style="background-color: #e9e9e9;">
-                        <div class="university_name d-flex justify-content-center align-items-center rounded-top">
-                            Dhaka University
-                        </div>
-                        <div class="country d-flex justify-content-center align-items-center rounded-bottom">
-                            Bangladesh
-                        </div>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn">Details</button>
-                        </div>
 
+            <div class="col-md-6 col-lg-4 mb-5 ">
+                <div class="portfolio-item mx-auto category " data-toggle="modal " data-target="#portfolioModal3 ">
+                    <a href="{% url 'agriculturaluniversitylist' %} ">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 ">
+                            <div class="portfolio-item-caption-content text-center text-white "><i class="fas fa-plus fa-3x "></i></div>
+                        </div>
+                        <img class="img-fluid img-thumbnail img-hei " src="{% static 'image/agricultural.jpg' %} " alt=" " />
+                    </a>
+                    <div style="text-align: center; border: 1px solid darkgray; ">
+                        <h3>Agricultural University</h3>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{% static 'image/du.jpg'%}" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body" style="background-color: #e9e9e9;">
-                        <div class="university_name d-flex justify-content-center align-items-center rounded-top">
-                            Dhaka University
-                        </div>
-                        <div class="country d-flex justify-content-center align-items-center rounded-bottom">
-                            Bangladesh
-                        </div>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <button type="button" class="btn">Details</button>
-                        </div>
 
+            <div class="col-md-6 col-lg-4 mb-5 ">
+                <div class="portfolio-item mx-auto category " data-toggle="modal " data-target="#portfolioModal3 ">
+                    <a href="{% url 'suuniversitylist' %} ">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 ">
+                            <div class="portfolio-item-caption-content text-center text-white "><i class="fas fa-plus fa-3x "></i></div>
+                        </div>
+                        <img class="img-fluid img-thumbnail img-hei " src="{% static 'image/su.jpg' %} " alt=" " />
+                    </a>
+                    <div style="text-align: center; border: 1px solid darkgray; ">
+                        <h3>Special University</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-5 ">
+                <div class="portfolio-item mx-auto category " data-toggle="modal " data-target="#portfolioModal3 ">
+                    <a href="{% url 'privateuniversitylist' %} ">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100 ">
+                            <div class="portfolio-item-caption-content text-center text-white "><i class="fas fa-plus fa-3x "></i></div>
+                        </div>
+                        <img class="img-fluid img-thumbnail img-hei " src="{% static 'image/program.png' %} " alt=" " />
+                    </a>
+                    <div style="text-align: center; border: 1px solid darkgray; ">
+                        <h3>Private University</h3>
                     </div>
                 </div>
             </div>

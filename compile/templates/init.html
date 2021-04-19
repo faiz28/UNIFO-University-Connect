@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {%load static%}
+
+    <title>Compiler</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="c0derunR, online, compiler, terminal, bing, gesture, code, Gaurav Sahu, demfier, Surya Midatala, kingofools, Kaustubh Hiware, IIT Kharagpur, Programming, kaustubhhiware" />
+    <meta name="author" content="Gaurav, Surya aur Kaustubh" />
+    <link rel="shortcut icon" href="/static/img/logo.ico">
+    <!-- Addddddddddddddddd -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contact_us.css' %}">
+    <link rel="stylesheet" href="{% static 'css/userprofile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/university-details.css' %}">
+    <link rel="stylesheet" href="{% static 'css/universitylist.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <!-- Endddddddd -->
+
+    <link href='/static/css/mystyle.css' rel='stylesheet' type='text/css'>
+    <script src="/static/js/terminal_fill.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+    <style>
+        #title-main {
+            font-family: "Bree Serif";
+            font-size: 1.2em;
+            color: #777;
+            text-decoration: none;
+            vertical-align: baseline;
+            line-height: 20px;
+        }
+        
+        .theme {
+            background-color: #009999 !important;
+        }
+        
+        #notifications {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            z-index: 9999;
+            width: 400px;
+            /*transition: all 0.3s ease;*/
+        }
+        
+        #notif-logo {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 40px;
+            width: 40px;
+            border-radius: 40px;
+            background: white;
+            /*color: ;*/
+            box-shadow: 0 0 20px black;
+            text-align: center;
+            font-size: 17px;
+            line-height: 40px;
+        }
+        
+        #notif-logo:hover {
+            cursor: pointer;
+        }
+        
+        #notif-logo:active {
+            opacity: 0.9;
+            transform: scale(0.9);
+            box-shadow: 0 0 15px black;
+        }
+        
+        #notif-cont {
+            display: none;
+            width: 100%;
+            overflow-x: auto;
+            position: relative;
+            top: -50px;
+            border-radius: 5px;
+            box-shadow: 0 0 25px black;
+            transition: none !important;
+            background: white;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .notifs {
+            /*width: 100%;*/
+            height: 50px;
+            position: relative;
+            float: left;
+            /*background: white;*/
+            padding: 15px;
+            border-bottom: 0.3px solid lightgrey;
+            color: rgba(0, 0, 0, 0.8);
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="nav-bar">
+
+        <nav class="navbar navbar-expand-lg navbar-light nav-height">
+            <a class="navbar-brand" href="{%url 'home'%}">LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto" style="  float: right !important;">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{%url 'home'%}">Home </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      University
+                    </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #1abc9c;">
+                            <a class="dropdown-item" href="{%url 'agriculturaluniversitylist' %}">Agricultural University</a>
+                            <a class="dropdown-item" href="{%url 'engineeruniversitylist' %}">Engineering University</a>
+                            <a class="dropdown-item" href="{%url 'medicaluniversitylist' %}">Medical University</a>
+                            <a class="dropdown-item" href="{%url 'publicuniversitylist' %}">Public University</a>
+                            <a class="dropdown-item" href="{%url 'privateuniversitylist' %}">Private University</a>
+                            <a class="dropdown-item" href="{%url 'stuuniversitylist' %}">Science and Teachnology University</a>
+                            <a class="dropdown-item" href="{%url 'suuniversitylist' %}">Special University</a>
+                        </div>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact'%}">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'compilerrrr'%}">Compiler</a>
+                    </li>
+                    <li class="nav-item d-flex">
+                        {% if user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'user'%}">{{ user.get_username }}</a>
+                        <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                        <form action="{%url 'logout'%}" method="POST" id='logout'>
+                            {% csrf_token%}
+                            <input type="hidden">
+                        </form>
+                        {%else%}
+                        <a class="nav-link" href="{% url 'signin'%}">Login</a>
+                        <a class="nav-link" href="#">/</a>
+                        <a class="nav-link" href="{% url 'signup'%}">Sign Up</a> {%endif%}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+    <script>
+        function eraseText() {
+            document.getElementById("output").value = "";
+        }
+    </script>
+
+
+
+    <style>
+        h2,
+        .waves-effect,
+        .nav,
+        .form-group,
+        .table,
+        .page-footer {
+            font-family: "Bree Serif";
+        }
+    </style>
+
+    <div class="container">
+        <br>
+        <br>
+        <form class="lang" method="POST">
+            {% csrf_token %}
+
+            <fieldset class="form-group">
+                <label for="lang">Select Language</label>
+                <select class="form-control" name="lang" id="lang" onchange="terminal(this)">
+              <option value=C selected="selected">C (gcc 4.8.4)</option>
+              <option value=CPP>C++ (g++ 4.8.4)</option>
+              <option value="CPP14">C++14 (g++ 5.4.0)</option>
+              <option value=CSHARP>C# (mono 3.2.8)</option>
+              <option value="ERLANG">Erlang (erts 8.3)</option>
+              <option value=GO>Go (go 1.4.2)</option>
+              <option value=HASKELL>Haskell (ghc 7.6.3)</option>
+              <option value=JAVA>Java (openjdk 1.7.0_09)</option>
+              <option value="JAVASCRIPT">JavaScript (Rhino 1.7)</option>
+              <option value="JAVASCRIPT_NODE">JavaScript (Node.js v6.11.0)</option>
+              <option value="KOTLIN">Kotlin (1.1.2-2)</option>
+              <option value=LISP>Lisp (csc 4.8.0.5)</option>
+              <option value=OBJECTIVEC>Objective-C (clang 3.3)</option>
+              <option value="OCTAVE">Octave (gnu octave 4.0.0)</option>
+              <option value=PASCAL>Pascal (fpc 2.6.2)</option>
+              <option value=PHP>PHP (php 5.5.9)</option>
+              <option value=PYTHON>Python (python 2.7.6)</option>
+              <option value="PYTHON3">Python 3 (python 3.5.2)</option>
+              <option value=R>R (RScript 3.0.2)</option>
+              <option value=RUBY>Ruby (ruby 2.1.1)</option>
+              <option value="RUST">Rust (rustc 1.15.1)</option>
+              <option value="SWIFT">Swift (swift 3.1.1)</option>
+              <option value="VB">Visual Basic (mono 4.6, vbnc 0.0.0.5943)</option>
+            </select>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="code-form">Code</label>
+                <textarea class="form-control" id="source" rows="11">
+#include <stdio.h>
+
+int main()
+{
+    printf("Hello World!");
+    return 0;
+}            </textarea>
+
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="code-form" class="togvis">Custom Input</label>
+                <p>
+                    <textarea class="form-control" id="input_text" rows="1"></textarea>
+                </p>
+            </fieldset>
+
+            <button type="submit" id="submit" class="waves-effect waves-light btn">Run</button>
+            <button value="Clear" class="waves-effect waves-light btn" onclick="javascript:eraseText();">Reset</button>
+
+        </form>
+    </div>
+    <br>
+
+    <!--Output Table: Start-->
+    <div class="container">
+        <table class="table table-striped hidden" id="table">
+            <thead>
+                <tr>
+                    <th>Output</th>
+                    <th>Errors</th>
+                    <th>Compile Status</th>
+                    <th>Time (sec)</th>
+                    <th>Memory (KB)</th>
+                    <th>keywords</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- <div id="notifications">
+    <div id="notif-cont">
+        {% for notification in notifications %}
+            <div class="notifs">
+               <span>{{ notification.text }}</span>
+            </div>
+        {% endfor %}
+    </div>
+    <div id="notif-logo">
+        <i class="glyphicon glyphicon-search" aria-hidden="false    "></i>
+    </div>
+</div>-->
+
+
+
+
+    <style>
+        mark {
+            background-color: #e67676;
+            color: white;
+        }
+    </style>
+
+    <script>
+        // Toggle custom input
+        $(function() {
+
+            $('label.togvis').click(function() {
+                $(this).parents("fieldset").find("*:not('label')").toggle();
+                return true;
+            });
+
+        });
+
+        //For getting CSRF token
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+
+        //For doing AJAX post
+        $("#submit").click(function(e) {
+
+            e.preventDefault();
+            var csrftoken = getCookie('csrftoken');
+            //  var lang = $('#lang').val();
+            var e = document.getElementById("lang");
+            var lang = e.options[e.selectedIndex].value;
+            var source = $('#source').val();
+            var input = $('#input_text').val();
+            // This is the Ajax post.Observe carefully.
+            //  It is nothing but details of where_to_post,what_to_post
+
+            $.ajax({
+                url: window.location.href, // the endpoint,commonly same url
+                type: "POST", // http method
+                data: {
+                    "csrfmiddlewaretoken": csrftoken,
+                    "lang": lang,
+                    "source": source,
+                    "input": input
+                }, // data sent with the post request
+
+                success: function(json) {
+                    if (json) {
+                        var txt = "";
+
+                        // Output
+                        if (json['run_status']['output']) {
+                            txt += "<tr><td>" + json['run_status']['output'] + "</td>";
+                        } else {
+                            txt += "<tr><td>" + 'NA' + "</td>";
+                        }
+                        // Errors
+                        if (json['errors']) {
+                            txt += "<td>" + "<mark>" + json['errors'] + "</mark>" + "</td>";
+                        } else {
+                            txt += "<td>" + 'NA' + "</td>";
+                        }
+                        // Compile Status
+                        if (json['compile_status'] != "OK") {
+                            txt += "<td>" + "<mark>" + json['compile_status'] + "</mark>" + "</td>";
+                        } else if (json['compile_status'] == "OK") {
+                            txt += "<td>" + json['compile_status'] + "</td>";
+                        } else {
+                            txt += "<td>" + 'NA' + "</td>";
+                        }
+                        // Time used
+                        if (json['run_status']['time_used']) {
+                            txt += "<td>" + json['run_status']['time_used'] + "</td>";
+                        } else {
+                            txt += "<td>" + 'NA' + "</td>";
+                        }
+                        // Memory used
+                        if (json['run_status']['memory_used']) {
+                            txt += "<td>" + json['run_status']['memory_used'] + "</td></tr>";
+                        } else {
+                            txt += "<td>" + 'NA' + "</td></tr>";
+                        }
+                        if (json['debug_urls']) {
+                            var search_div = document.getElementById('search_links');
+                            search_div.innerHTML = '<ul>';
+                            for (var i = 0; i < json['debug_urls'].length; i++) {
+                                var j = json['descriptions'][i].toString();
+                                search_div.innerHTML += '<li><a href="' + json['debug_urls'][i] + '" target="_blank">' + j + '</a></li>';
+                                // search_div.innerHTML += json['debug_urls'][i]
+                            }
+                            search_div.innerHTML += '</ul>';
+                        }
+
+                        if (txt != "") {
+                            $("#table").append(txt).removeClass("hidden");
+                        }
+                    }
+                },
+                // Display JSON data in table: END
+
+                // handle a non-successful response
+                error: function(xhr, errmsg, err) {
+                    // directly append this to planned terminal
+                    console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                }
+            });
+        });
+    </script>
+
+    <br>
+    <br>
+</body>
+
+</html>

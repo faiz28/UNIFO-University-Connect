@@ -1,0 +1,40 @@
+{%extends 'base.html' %} {%block content%} {%load static%}
+
+
+<div class="container">
+    <div class="main-body">
+
+
+        <!-- /Breadcrumb -->
+        {%for data in event.all%}
+        <div class="row gutters-sm">
+            <div class="col-md-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div style="text-align: center;">
+                            <img class="img-fluid" style="max-height: 300px;" src="{{data.img.url}}" alt="">
+                        </div>
+                        <hr style="border: 2px solid #ecb200;">
+
+                        <div class=" mb-3" style="color: gray;">
+                            <p style="padding-right: 10px;">Start Time: {{data.date_start}}</p>
+                            <p style="padding-right: 10px;">End Time: {{data.date_end}}</p>
+                        </div>
+                        <hr style="border: 2px solid #ecb200;">
+
+                        <h3>Title : {{data.title}}</h3>
+                        <hr>
+                        <h3>Description : </h3>
+                        <div class="d-flex">
+                            {{data.description | safe}}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+</div>
+{%endblock%}

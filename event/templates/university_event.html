@@ -1,0 +1,110 @@
+{%extends 'base.html' %} {%block content%} {%load static%}
+
+<div class="container">
+    <div class="main-body">
+
+
+        <!-- /Breadcrumb -->
+        <div>
+            <div class="row gutters-sm">
+                <div class="col-md-12 mb-3">
+
+                    <div class="card card-control">
+                        <div class="card-body">
+
+                            <div style="text-align: center;">
+                                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0" style="color: #2c3e50 !important;">All Event </h2>
+                            </div>
+
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fa fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+
+                            <div class="card-deck ">
+                                {%for data in stu_data.all|slice:':1'%} {% if data.department_id == dep_id %}
+                                <div class="col-md-4 department" style="    text-align: center;">
+                                    <!-- Card -->
+                                    <a href="{%url 'event_create' dep_id %}">
+                                        <div class="card promoting-card">
+
+                                            <!-- Card image -->
+                                            <div class="view overlay">
+                                                <img class=" img-fluid" src="{% static 'image/event.png'%}" alt="Card image cap">
+                                                <a href="#!">
+                                                    <div class="mask rgba-white-slight" style="text-align: center;">
+                                                        <h3>Add Event</h3>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+
+
+                                        </div>
+                                        <!-- Card -->
+                                    </a>
+
+
+                                </div>
+                                {%endif%} {%endfor%} {%for event in event_list.all%}
+                                <div class="col-md-4 department">
+                                    <!-- Card -->
+                                    <a href="{%url 'event_view' event.id%}">
+                                        <div class="card promoting-card">
+
+                                            <!-- Card content -->
+
+
+                                            <!-- Card image -->
+                                            <div class="view overlay">
+                                                <img class="img-fluid img-thumbnail" style="width: 422px; height: 262px;" src="{{event.img.url}}" alt="Card image cap">
+                                                <a href="#!">
+                                                    <div class="mask rgba-white-slight"></div>
+                                                </a>
+                                            </div>
+                                            <div class="view overlay">
+                                                <p>Start Time: {{event.date_start}}</p>
+                                                <p>End Time: {{event.date_end}}</p>
+                                            </div>
+                                            <hr>
+                                            <!-- Card content -->
+                                            <div class="card-body">
+
+                                                <div class="">
+                                                    <h3>
+                                                        {{event.title}}
+                                                    </h3>
+                                                    <!-- Text -->
+                                                    <div class="description">
+                                                        {{event.description | safe}}
+
+                                                    </div>
+                                                    <!-- Button -->
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <!-- Card -->
+                                    </a>
+
+
+                                </div>
+                                {%endfor%}
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

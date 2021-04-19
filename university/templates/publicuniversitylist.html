@@ -1,0 +1,72 @@
+{%extends 'base.html' %} {%block content%} {%load static%}
+
+<!-- banner section-->
+<section id="banner">
+    <div class="continer">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="threeD">
+                    <h1>Public University</h1>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'image/banner.png'%}" alt="" class="img-fluid">
+            </div>
+        </div>
+        <!-- <div class="topnav">
+            <div class="search-container">
+                <form action="#">
+                    <input type="text" placeholder="Search.." name="search" style="width: 80%; height: 50px">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div> -->
+    </div>
+</section>
+
+
+<!-- University section-->
+<section id="public_university">
+    <div class="container uni_list">
+
+        <div class="row">
+
+            {% for data in uni_list.all%} {%if data.uni_category.uni_category == "pu"%}
+            <div class="col-md-3">
+                <div class="card mb-4 box-shadow card-round ">
+                    <!-- <img class="img-fluid img-thumbnail img-hei" src="{{ data.image.url}}" alt="" /> -->
+                    <img class="card-img-top" src="{{ data.university_logo.url }}" alt="Card image cap">
+                    <div class="card-body" style="background-color: #e9e9e9;">
+                        <div class="university_name d-flex justify-content-center  rounded-top">
+                            <h5 style="text-align: center;">
+                                {{data.uni_name}}
+
+                            </h5>
+                        </div>
+
+                        <hr style="border: 1px solid #1abc9c;">
+                        <p class="card-text" style="overflow: hidden;text-overflow: ellipsis;   white-space: nowrap;"> {{data.description}}</p>
+
+                        <div class="d-flex justify-content-center align-items-center ">
+                            <p>Total studnet : {{data.total_student}}+</p>
+                        </div>
+
+                        <div class="d-flex justify-content-center align-items-center btn-design">
+                            <a class="btn   details" href="{% url 'uni_details' data.id %}">
+                                    Details
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            {%endif%} {% endfor%}
+
+
+        </div>
+    </div>
+</section>
+
+
+{%endblock%}
