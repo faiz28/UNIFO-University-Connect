@@ -1,0 +1,8 @@
+pip3 install djangorestframework
+pip install django-ckeditor 
+pip install mysqlclient
+pip install requests
+pip install BeautifulSoup4
+pip install rake-nltk
+pip install Pillow
+pip install authentication
